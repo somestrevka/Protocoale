@@ -1,0 +1,18 @@
+  Am implementat o parsare a tabelei de rutare intr-un arbore binar, cu scopul
+de a avea o cautare in O(log n).
+  Verificam daca am primit un mesaj de tip ARP. In caz afirmativ, verificam da-
+ca este vorba despre o cerere sau despre un raspuns. Daca avem o cerere, trimi-
+tem inapoi un mesaj de tip raspuns. In cazul unui raspuns, mesajul vine de la o
+statie de a carei adrese MAC avem nevoie pentru a-i trimite un pachet ICMP. 
+Verificam coada sa nu fie goala, scoatem mesajul si i-l trimitem. Atat in cazul
+unui raspuns, cat si al unei solicitari, adaug la tabela de ARP MAC-ul si IP-ul
+statiei sursa.
+  Pentru situatia primirii unui pachet de tip ICMP, verific mai intai daca este
+destinat routerului sau altei statii. Daca este pentru router, trimitem inapoi
+un mesaj de tip ICMP_ECHOREPLAY. In caz contrar, verific ttl-ul, apoi 
+checksum-ul. In final, verific daca am sau nu adresa MAC a urmatoarei statii de
+pe traseu. In cazul in care am MAC-ul, trimit pachetul, altfel il adaug in coa-
+da si trimit o cerere ARP pentru a afla MAC-ul.
+  Structurile de date preluate din laboratorul patru sunt specificate prin co-
+mentarii in cod.
+  
